@@ -1,0 +1,17 @@
+# Frontend ignores
+**/node_modules/
+**/.npm
+**/.cache
+
+# Backend ignores (Java/Maven)
+**/target/
+**/*.class
+**/*.jar
+**/*.war
+
+# Common ignores
+**/.env
+**/.DS_Store
+**/*.log
+**/dist/
+**/build/
