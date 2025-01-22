@@ -6,10 +6,7 @@ import Episante.back.Models.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class QuizService {
@@ -21,20 +18,11 @@ public class QuizService {
     private int currentQuestionIndex = 0;
     private Map<Long, String> userAnswers = new HashMap<>();
 
-    // Initialize questions (can be loaded from DB or hardcoded)
-    public void initializeQuestions() {
-        // Example of hardcoding questions
-        questions = new ArrayList<>();
-        questions.add(new Question("How old are you?"));
-        questions.add(new Question("What is your IQ?"));
-        questions.add(new Question("What is your favorite color?"));
-        // Or load from the database
-        // questions = questionRepository.findAll();
-    }
-
+    // Initialize questions (can be loaded from DB or hardcoded) me i prefer the DB
+    // i can make a func initialized to initialize the questions but no need, cuz will be initialized from DB by findAll() method
     public Question getNextQuestion() {
         if (questions == null || questions.isEmpty()) {
-            initializeQuestions(); // Initialize if not already done
+            questions = questionRepository.findAll(); // Load from DB only if not initialized
         }
         if (currentQuestionIndex < questions.size()) {
             return questions.get(currentQuestionIndex++);
@@ -46,37 +34,43 @@ public class QuizService {
         userAnswers.put(questionId, answer);
     }
 
-    public String calculateResult() {
-        // Implement your logic to determine the result based on userAnswers
-        // Example:
-        int smartPoints = 0;
-        int simplePoints = 0;
-        int stupidPoints = 0;
 
+    public String calculateResult() {
+        if (questions == null || questions.isEmpty()) {
+            questions = questionRepository.findAll(); // Load from DB if not initialized
+        }
+        int correctAnswers = 0;
         for (Map.Entry<Long, String> entry : userAnswers.entrySet()) {
             Long questionId = entry.getKey();
-            String answer = entry.getValue().toLowerCase(); // Example: lowercase for comparison
+            String userAnswer = entry.getValue().toLowerCase().trim(); // the answers should be in lower case
 
-            // Example scoring logic (you'll need to customize this)
-            if (questionId == 2 && answer.contains("above 120")) { // Assuming question with id 2 is about IQ
-                smartPoints++;
-            } else if (answer.contains("yes") || answer.contains("no")) {
-                simplePoints++;
-            } else {
-                stupidPoints++;
+            Optional<Question> question = questionRepository.findById(questionId);
+            if(question.isPresent())
+            {
+                String correctAnswer = question.get().getAnswer().toLowerCase().trim();
+                if (userAnswer.equals(correctAnswer)) {
+                    correctAnswers++;
+                }
+
             }
+
         }
 
-        if (smartPoints > simplePoints && smartPoints > stupidPoints) {
-            return "You are smart!";
-        } else if (simplePoints > smartPoints && simplePoints > stupidPoints) {
-            return "You are simple.";
+        double percentageCorrect = (double) correctAnswers / questions.size() * 100;
+
+        if (percentageCorrect >= 80) {
+            return "You are quite smart!, m3alm!";
+        } else if (percentageCorrect >= 50) {
+            return "You have a decent level of knowledge. zayar m3ana";
         } else {
-            return "You are... interesting."; // Or "stupid" if you prefer
+            return "You might need to brush up on your knowledge. tu es un hmar ";
         }
     }
 
     public boolean hasMoreQuestions() {
+        if (questions == null || questions.isEmpty()) {
+            questions = questionRepository.findAll(); // Load from DB if not initialized
+        }
         return currentQuestionIndex < questions.size();
     }
 

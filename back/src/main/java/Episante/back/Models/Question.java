@@ -11,11 +11,14 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String questionText;
+    private String answer; // add the correct answer for testing purposes
+
 
     public Question() {}
 
-    public Question(String questionText) {
+    public Question(String questionText, String answer) {
         this.questionText = questionText;
+        this.answer = answer ;
     }
 
     public Long getId() {
@@ -32,5 +35,13 @@ public class Question {
 
     public void setQuestionText(String questionText) {
         this.questionText = questionText;
+    }
+
+    public String getAnswer(){
+        return answer ;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 }
