@@ -11,22 +11,22 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String questionText;
-    private String answer; // add the correct answer for testing purposes
+    private String questionType; // "number", "select", "text"
+    private String options; // Comma-separated options for select questions (e.g., "Male,Female,Other")
+    private String unit; // Unit for numeric input if any (e.g., "kg", "cm", "years")
 
+    public Question() {
+    }
 
-    public Question() {}
-
-    public Question(String questionText, String answer) {
+    public Question(String questionText, String questionType, String options,String unit) {
         this.questionText = questionText;
-        this.answer = answer ;
+        this.questionType = questionType;
+        this.options = options;
+        this.unit = unit;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getQuestionText() {
@@ -37,11 +37,27 @@ public class Question {
         this.questionText = questionText;
     }
 
-    public String getAnswer(){
-        return answer ;
+    public String getQuestionType() {
+        return questionType;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setQuestionType(String questionType) {
+        this.questionType = questionType;
+    }
+
+    public String getOptions() {
+        return options;
+    }
+
+    public void setOptions(String options) {
+        this.options = options;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 }

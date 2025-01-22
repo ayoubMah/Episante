@@ -94,6 +94,7 @@ function QuizContainer() {
                     question={currentQuestion}
                     onAnswerChange={handleAnswerChange}
                     onSubmit={handleSubmitAnswer}
+                    currentAnswer={currentAnswer}
                 />
             )}
 
