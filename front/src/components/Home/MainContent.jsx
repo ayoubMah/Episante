@@ -1,7 +1,6 @@
 import React from 'react';
 import './MainContent.css';
 
-
 const MainContent = () => {
     return (
         <main className="content">
@@ -11,12 +10,11 @@ const MainContent = () => {
                 <div className="card" onClick={() => window.location.href = '/patients'}>
                     <h2>Patient Management</h2>
                     <p>View and manage patient records.</p>
-
                 </div>
 
-                <div className="card">
+                <div className="card" onClick={() => window.location.href = '/rendezvous'}> {/* Updated route */}
                     <h2>Rendez-Vous</h2>
-                    <p>Prendre Votre Rendez-Vous  (Coming Soon).</p>
+                    <p>Prendre Votre Rendez-Vous.</p> {/* Removed "(Coming Soon)" */}
                 </div>
 
                 <div className="card">
@@ -29,9 +27,9 @@ const MainContent = () => {
                     <h2>Quick Test</h2>
                     <p>Take a fun personality test.</p>
                 </div>
-
             </div>
         </main>
     );
 };
+
 export default MainContent;

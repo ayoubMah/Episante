@@ -1,0 +1,68 @@
+/* src/components/RendezVous/RendezVousComponent.css */
+.rendezvous-container {
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+.doctor-selection,
+.time-selection,
+.booking-confirmation {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.doctor-selection h2,
+.time-selection h2,
+.booking-confirmation h2 {
+    margin-top: 0;
+}
+
+.doctor-selection ul,
+.time-selection ul {
+    list-style: none;
+    padding: 0;
+}
+
+.doctor-selection li,
+.time-selection li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.doctor-selection li:hover,
+.time-selection li:hover {
+    background-color: #f9f9f9;
+}
+
+.booking-confirmation input[type="text"] {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.booking-confirmation button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.booking-confirmation button:hover {
+    background-color: #0056b3;
+}
+
+.success-message {
+    color: green;
+    font-weight: bold;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}
