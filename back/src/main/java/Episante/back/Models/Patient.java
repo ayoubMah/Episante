@@ -3,6 +3,7 @@ package Episante.back.Models;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 // Cette annotation de JPA (Java Persistence API) indique que cette classe est une entité
 @Entity
@@ -14,26 +15,19 @@ public class Patient {
     private long id;
 
     @Column(unique = true, nullable = false)
-
     private String identifier;
+
     private String nom;
     private String prenom;
     private int age;
     private double poids;
     private double currentWeight;
     private Double height;
+
+    @Enumerated(EnumType.STRING) // store enum as,string
     private Sexe sexe;
-    private String email;
-    private String phoneNumber;
-    private String address;
 
-    @Column(updatable = false)
-    private Timestamp createdAt;
 
-    private Timestamp updatedAt;
-
-    @Column(nullable = false)
-    private String password; // Added password field
 
 
     public long getId() {
@@ -108,50 +102,15 @@ public class Patient {
         this.height = height;
     }
 
-    public String getEmail() {
-        return email;
+
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+    private List<RendezVous> rdvs ;
+
+    public List<RendezVous> getRdvs(){
+        return rdvs ;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
+    public void setRdvs(List<RendezVous> rdvs) {
+        this.rdvs = rdvs;
     }
 }

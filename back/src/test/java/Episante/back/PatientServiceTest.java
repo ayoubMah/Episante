@@ -1,7 +1,7 @@
 package Episante.back;
 
 
-import Episante.back.Repository.IPatientDao;
+import Episante.back.Repository.PatientRepository;
 import Episante.back.Models.Patient ;
 import Episante.back.Service.PatientService ;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.*;
 public class PatientServiceTest {
 
     @Mock
-    private IPatientDao patientDao;
+    private PatientRepository patientDao;
 
     @Mock
     private BCryptPasswordEncoder passwordEncoder;
