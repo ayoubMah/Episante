@@ -1,7 +1,11 @@
 import React from 'react';
 import './MainContent.css';
+import { useNavigate } from 'react-router-dom';
+
 
 const MainContent = () => {
+    const navigate = useNavigate();
+
     return (
         <main className="content">
             <h1>Hello From EpiSante</h1>
@@ -12,9 +16,9 @@ const MainContent = () => {
                     <p>View and manage patient records.</p>
                 </div>
 
-                <div className="card" onClick={() => window.location.href = '/rendezvous'}> {/* Updated route */}
+                <div className="card" onClick={() => navigate('/rendezvous')}>
                     <h2>Rendez-Vous</h2>
-                    <p>Prendre Votre Rendez-Vous.</p> {/* Removed "(Coming Soon)" */}
+                    <p>Prendre Votre Rendez-Vous.</p>
                 </div>
 
                 <div className="card">

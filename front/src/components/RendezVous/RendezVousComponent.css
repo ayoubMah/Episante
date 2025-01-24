@@ -1,68 +1,38 @@
-/* src/components/RendezVous/RendezVousComponent.css */
-.rendezvous-container {
-    padding: 20px;
-    font-family: sans-serif;
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
 }
 
-.doctor-selection,
-.time-selection,
-.booking-confirmation {
-    margin-bottom: 20px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+.card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
 }
 
-.doctor-selection h2,
-.time-selection h2,
-.booking-confirmation h2 {
-    margin-top: 0;
+.card:hover {
+    transform: translateY(-3px);
 }
 
-.doctor-selection ul,
-.time-selection ul {
-    list-style: none;
-    padding: 0;
+.specialty {
+    color: #666;
+    font-style: italic;
+    margin: 0.5rem 0;
 }
 
-.doctor-selection li,
-.time-selection li {
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-    cursor: pointer;
+.time-block {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
 }
 
-.doctor-selection li:hover,
-.time-selection li:hover {
-    background-color: #f9f9f9;
-}
-
-.booking-confirmation input[type="text"] {
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.booking-confirmation button {
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.booking-confirmation button:hover {
-    background-color: #0056b3;
-}
-
-.success-message {
-    color: green;
-    font-weight: bold;
-}
-
-.error-message {
-    color: red;
-    font-weight: bold;
+.time-icon {
+    font-size: 1.5rem;
 }
